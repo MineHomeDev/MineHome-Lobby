@@ -1,0 +1,7 @@
+name: Minehome-Lobby
+version: '1.0.0'
+main: eu.minehome.minehomeLobby.MinehomeLobby
+api-version: '1.21'
+load: STARTUP
+authors: [ MineHomeDev, MineHome ]
+website: minehome.eu
