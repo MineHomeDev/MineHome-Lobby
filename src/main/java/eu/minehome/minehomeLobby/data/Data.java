@@ -21,8 +21,8 @@ public class Data {
     public final static String builuse = "§7§lBitte benutze §c§l/build";
 
     //Fly Nachrichten
-    public final static String flyon = "§7§lDu bist im §a§lBaumodus§7§l!";
-    public final static String flyoff = "§7§lDu bist nicht mehr im §c§lBaumodus§7§l!";
+    public final static String flyon = "§7§lDu bist im §a§lFlugmodus§7§l!";
+    public final static String flyoff = "§7§lDu bist nicht mehr im §c§Flugmodus§7§l!";
     public final static String flyuse = "§7§lBitte benutze §c§l/fly";
 
     // Join und Quit Nachrichten können deaktiviert werden mit null
