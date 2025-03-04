@@ -1,0 +1,11 @@
+name: Minehome-Lobby
+version: '1.0.0'
+main: eu.minehome.minehomeLobby.MinehomeLobby
+api-version: '1.21'
+authors: [ MineHomeDev, MineHome ]
+website: minehome.eu
+commands:
+  build:
+    description: Mit /build kannst du Bauen.
+  fly:
+    description: Mit /fly kannst du Fliegen.
