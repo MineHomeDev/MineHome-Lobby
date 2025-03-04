@@ -38,10 +38,10 @@ public class JoinEvent implements Listener {
             }else {
                 e.setJoinMessage(null);
             }
-            e.getPlayer().setGameMode(GameMode.SURVIVAL);
-            e.getPlayer().setFoodLevel(20);
-            e.getPlayer().setHealth(20);
-            e.getPlayer().getInventory().clear();
+            p.setGameMode(GameMode.SURVIVAL);
+            p.setFoodLevel(20);
+            p.setHealth(20);
+            p.getInventory().clear();
             LobbyInventory.GetLobbyInventory(e.getPlayer());
 
         }

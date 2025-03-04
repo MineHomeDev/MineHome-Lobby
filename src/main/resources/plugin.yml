@@ -7,5 +7,26 @@ website: minehome.eu
 commands:
   build:
     description: Mit /build kannst du Bauen.
+    permission: minehome.build
   fly:
     description: Mit /fly kannst du Fliegen.
+    permission: minehome.fly
+  setwarp:
+    description: Mit /setwarp <Name> kannst du einen Warps setzen.
+    permission: minehome.setwarp
+  warp:
+    description: Mit /warp <Name> kannst du einen Warp setzen.
+  delwarp:
+    description: Mit /delwarp <Name> kannst du einen Warps Löschen.
+    permission: minehome.delwarp
+  warplist:
+    description: Mit /warplist werden dir alle Warps angezeigt.
+    permission: minehome.warplist
+  setspawn:
+    description: Mit /setspawn kannst du denn Spawn setzen.
+    permission: minehome.setspawn
+  spawn:
+    description: Mit /spawn kommst du zum Spawn.
+  delspawn:
+    description: Mit /delspawn kannst du denn Spawn Löschen.
+    permission: minehome.delspawn

@@ -11,13 +11,13 @@ public class SneakInventory {
         // Navigator
         ItemStack Fly = new ItemStack(Material.FEATHER);
         ItemMeta FlyMeta = Fly.getItemMeta();
-        FlyMeta.setDisplayName("§b§lFly §b§l| §b§lRechtsklick");
+        FlyMeta.setDisplayName("§b§lFly §7§l| §7§lRechtsklick");
         Fly.setItemMeta(FlyMeta);
 
         // LobbySwitcher
         ItemStack Build = new ItemStack(Material.BRICK);
         ItemMeta BuildMeta = Build.getItemMeta();
-        BuildMeta.setDisplayName("§b§lBuild §b§l| §b§lRechtsklick");
+        BuildMeta.setDisplayName("§b§lBuild §7§l| §7§lRechtsklick");
         Build.setItemMeta(BuildMeta);
 
         // Give Player Lobby Inventory

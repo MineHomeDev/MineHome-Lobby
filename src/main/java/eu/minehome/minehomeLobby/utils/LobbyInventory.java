@@ -12,20 +12,20 @@ public class LobbyInventory {
         // Navigator
         ItemStack Navigator = new ItemStack(Material.COMPASS);
         ItemMeta NavigatorMeta = Navigator.getItemMeta();
-        NavigatorMeta.setDisplayName("§b§lNavigator");
+        NavigatorMeta.setDisplayName("§b§lNavigator §7§l| §7§lRechtsklick");
         Navigator.setItemMeta(NavigatorMeta);
 
         // LobbySwitcher
         ItemStack LobbySwitcher = new ItemStack(Material.NETHER_STAR);
         ItemMeta LobbySwitcherMeta = LobbySwitcher.getItemMeta();
-        LobbySwitcherMeta.setDisplayName("§b§lLobbySwitcher");
+        LobbySwitcherMeta.setDisplayName("§b§lLobbySwitcher §7§l| §7§lRechtsklick");
         LobbySwitcher.setItemMeta(LobbySwitcherMeta);
 
         // Settings
         ItemStack Settings = new ItemStack(Material.PLAYER_HEAD, 1, (short) 3);
         SkullMeta playerheadmeta = (SkullMeta) Settings.getItemMeta();
         playerheadmeta.setOwner(p.getName());
-        playerheadmeta.setDisplayName("§b§l" + p.getName());
+        playerheadmeta.setDisplayName("§b§l" + p.getName() +" §7§l| §7§lRechtsklick");
         Settings.setItemMeta(playerheadmeta);
 
         // Give Player Lobby Inventory
