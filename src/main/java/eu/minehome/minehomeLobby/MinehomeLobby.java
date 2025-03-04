@@ -4,6 +4,7 @@ import eu.minehome.minehomeLobby.commands.BuildCmd;
 import eu.minehome.minehomeLobby.commands.FlyCmd;
 import eu.minehome.minehomeLobby.listener.ItemHeldEvent;
 import eu.minehome.minehomeLobby.listener.JoinEvent;
+import eu.minehome.minehomeLobby.listener.ProtectEvent;
 import eu.minehome.minehomeLobby.listener.QuitEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -30,6 +31,7 @@ public final class MinehomeLobby extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new JoinEvent(), this);
         Bukkit.getPluginManager().registerEvents(new QuitEvent(), this);
         Bukkit.getPluginManager().registerEvents(new ItemHeldEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new ProtectEvent(), this);
     }
     private void registerCommands() {
         getCommand("build").setExecutor(new BuildCmd());
