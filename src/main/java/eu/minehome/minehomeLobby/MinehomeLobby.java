@@ -30,6 +30,7 @@ public final class MinehomeLobby extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new ItemHeldEvent(), this);
         Bukkit.getPluginManager().registerEvents(new ProtectEvent(), this);
         Bukkit.getPluginManager().registerEvents(new SneakEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new LobbyClickEvent(), this);
 
     }
     private void registerCommands() {

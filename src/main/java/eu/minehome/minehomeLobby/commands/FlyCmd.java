@@ -29,13 +29,11 @@ public class FlyCmd implements CommandExecutor {
             player.setAllowFlight(false);
             player.setFlying(false);
             player.sendMessage(prefix + flyoff);
-        } else {
+        }else {
             player.setAllowFlight(true);
             player.setFlying(true);
             player.sendMessage(prefix + flyon);
         }
-
-
 
         return false;
     }

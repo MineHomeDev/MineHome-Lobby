@@ -2,6 +2,7 @@ package eu.minehome.minehomeLobby.listener;
 
 import eu.minehome.minehomeLobby.MinehomeLobby;
 
+import eu.minehome.minehomeLobby.utils.LobbyInventory;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.GameMode;
@@ -40,6 +41,8 @@ public class JoinEvent implements Listener {
             e.getPlayer().setGameMode(GameMode.SURVIVAL);
             e.getPlayer().setFoodLevel(20);
             e.getPlayer().setHealth(20);
+            e.getPlayer().getInventory().clear();
+            LobbyInventory.GetLobbyInventory(e.getPlayer());
 
         }
     }

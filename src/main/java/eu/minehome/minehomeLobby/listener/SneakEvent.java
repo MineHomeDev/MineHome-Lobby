@@ -1,5 +1,7 @@
 package eu.minehome.minehomeLobby.listener;
 
+import eu.minehome.minehomeLobby.utils.LobbyInventory;
+import eu.minehome.minehomeLobby.utils.SneakInventory;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.entity.Player;
@@ -14,8 +16,13 @@ public class SneakEvent implements Listener {
     public void ONSneakEvent(PlayerToggleSneakEvent e) {
         Player p = e.getPlayer();
         if (e.isSneaking()) {
-            p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("Du bist abgeblutten"));
+            e.getPlayer().getInventory().clear();
+            SneakInventory.GetSneakInventory(e.getPlayer());
+        } else if (!e.isSneaking()) {
+            e.getPlayer().getInventory().clear();
+            LobbyInventory.GetLobbyInventory(e.getPlayer());
         }
+
     }
 
 }
