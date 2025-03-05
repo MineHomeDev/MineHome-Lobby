@@ -1,5 +1,6 @@
 package eu.minehome.minehomeLobby.commands;
 
+import eu.minehome.minehomeLobby.utils.LobbyInventory;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -34,6 +35,7 @@ public class BuildCmd implements CommandExecutor {
             player.getInventory().clear();
             player.setGameMode(GameMode.SURVIVAL);
             player.sendMessage(prefix + buildoff);
+            LobbyInventory.GetLobbyInventory(player);
         }
         return false;
     }

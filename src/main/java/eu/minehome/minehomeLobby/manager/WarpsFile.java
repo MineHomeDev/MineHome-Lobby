@@ -1,4 +1,5 @@
-package eu.minehome.minehomeLobby.configmanager;
+package eu.minehome.minehomeLobby.manager;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import eu.minehome.minehomeLobby.MinehomeLobby;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -15,10 +16,12 @@ public class WarpsFile {
             try {
                 file.getParentFile().mkdir();
                 file.createNewFile();
+                Bukkit.getLogger().info("Minehome-Lobby Config wurde erstellt");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+        Bukkit.getLogger().info("Minehome-Lobby Config wurde geladen");
         addDefault();
     }
 
@@ -34,6 +37,7 @@ public class WarpsFile {
             warpsconfig.save(file);
         } catch (IOException e) {
             e.printStackTrace();
+            Bukkit.getLogger().info("Minehome-Lobby Config konnte nicht gespeichert werden");
         }
     }
 

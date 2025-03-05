@@ -7,29 +7,24 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 
 import static eu.minehome.minehomeLobby.data.Data.*;
 
 public class ProtectEvent implements Listener {
 
     @EventHandler
-    public void OnBlockPlaceEvent(BlockPlaceEvent e){
-        Player p = e.getPlayer();
-        if(p.getWorld().getName().equals(lobbyworld)) {
-            if(p.hasPermission(buildperms) && p.getGameMode() == (GameMode.CREATIVE)){
+    public void OnPlaceEvent (BlockPlaceEvent e) {
+        Player player = e.getPlayer();
+        if(e.getPlayer().getWorld().getName().equals(lobbyworld)) {
+            if (player.hasPermission(buildperms) && player.getGameMode().equals(GameMode.CREATIVE)) {
                 e.setCancelled(false);
-            } else if (!p.hasPermission(buildperms) || p.getGameMode() != (GameMode.CREATIVE)) {
+            }else if (!player.hasPermission(buildperms) || player.getGameMode() != (GameMode.CREATIVE)) {
                 e.setCancelled(true);
-                if (!dbugmsg.contains("null")){
-                    p.sendMessage(dbugmsg);
-                }else {
-                    return;
-                }
             }
         }
     }
@@ -41,11 +36,6 @@ public class ProtectEvent implements Listener {
                 e.setCancelled(false);
             } else if (!p.hasPermission(buildperms) || p.getGameMode() != (GameMode.CREATIVE)) {
                 e.setCancelled(true);
-                if (!dbugmsg.contains("null")){
-                    p.sendMessage(dbugmsg);
-                }else {
-                    return;
-                }
             }
         }
     }
@@ -57,11 +47,7 @@ public class ProtectEvent implements Listener {
                 e.setCancelled(false);
             } else if (!p.hasPermission(buildperms) || p.getGameMode() != (GameMode.CREATIVE)) {
                 e.setCancelled(true);
-                if (!dbugmsg.contains("null")){
-                    p.sendMessage(dbugmsg);
-                }else {
-                    return;
-                }
+
             }
         }
     }
@@ -73,11 +59,6 @@ public class ProtectEvent implements Listener {
                 e.setCancelled(false);
             } else if (!p.hasPermission(buildperms) || p.getGameMode() != (GameMode.CREATIVE)) {
                 e.setCancelled(true);
-                if (!dbugmsg.contains("null")){
-                    p.sendMessage(dbugmsg);
-                }else {
-                    return;
-                }
             }
         }
     }
@@ -109,8 +90,8 @@ public class ProtectEvent implements Listener {
         }
     }
     @EventHandler
-    public void ItemSwapHandEvent(PlayerSwapHandItemsEvent e){
-        if (e.getPlayer().getWorld().getName().equals(lobbyworld)){
+    public void Ex(EntityExplodeEvent e){
+        if (e.getLocation().getWorld().getName().equals(lobbyworld)){
             e.setCancelled(true);
         }
     }

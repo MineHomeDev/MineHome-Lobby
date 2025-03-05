@@ -7,6 +7,7 @@ public class Data {
     //Permissions
     public final static String buildperms = "minehome.build";
     public final static String flyperms = "minehome.fly";
+    public final static String sneakperms = "minehome.sneak";
     public final static String setwarpperms = "minehome.setwarp";
     public final static String delwarpperms = "minehome.delwarp";
     public final static String warplistperms = "minehome.warplist";
@@ -39,7 +40,7 @@ public class Data {
     public final static String setspawnuse = "§7Bitte benutze §c§l/setspawn";
     public final static String delspawn = "§7Der §a§lSpawn §7wurde gelöscht!";
     public final static String setspawn = "§7Der §a§lSpawn §7wurde erfolgreich erstellt!";
-    public final static String spaentp = "§7§Du bist am §a§lSpawn";
+    public final static String spaentp = "§7Du bist am §a§lSpawn";
     public final static String nospawn = "§7Der §c§lSpawn §7nicht gefunden!";
 
     // Join und Quit Nachrichten können deaktiviert werden mit null
