@@ -2,6 +2,7 @@ package eu.minehome.minehomeLobby.listener;
 
 import eu.minehome.minehomeLobby.MinehomeLobby;
 
+import eu.minehome.minehomeLobby.manager.WorldUpdate;
 import eu.minehome.minehomeLobby.utils.LobbyInventory;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -43,6 +44,7 @@ public class JoinEvent implements Listener {
             p.setHealth(20);
             p.getInventory().clear();
             LobbyInventory.GetLobbyInventory(e.getPlayer());
+            new WorldUpdate().DayNightCycle();
 
         }
     }

@@ -4,6 +4,7 @@ import eu.minehome.minehomeLobby.commands.*;
 import eu.minehome.minehomeLobby.manager.RunTask;
 import eu.minehome.minehomeLobby.manager.WarpsFile;
 import eu.minehome.minehomeLobby.listener.*;
+import eu.minehome.minehomeLobby.manager.WorldUpdate;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -22,6 +23,7 @@ public final class MinehomeLobby extends JavaPlugin {
         createConfig();
         registerEvent();
         registerCommands();
+        new WorldUpdate().DayNightCycle();
     }
 
     @Override
