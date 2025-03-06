@@ -1,7 +1,7 @@
 name: Minehome-Lobby
 version: '1.0.0'
-main: eu.minehome.minehomeLobby.MinehomeLobby
-api-version: '1.21'
+main: eu.minehome.minehomelobby.MinehomeLobby
+api-version: '1.20'
 authors: [ MineHomeDev, MineHome ]
 website: minehome.eu
 commands:
