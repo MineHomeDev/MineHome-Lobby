@@ -1,0 +1,65 @@
+name: Build Plugin and Upload Release
+
+on:
+  push:
+    tags: # Dieser Workflow wird nur bei "tags" ausgelöst
+      - 'v*' # Löst nur aus, wenn der Push einen Tag wie "v1.0" oder "v2.0.1" enthält
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Check out the code aus deinem Repository
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Set up Java 23 SDK
+    - name: Set up JDK 23
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin' # Alternativen: adopt, zulu, usw.
+        java-version: '23'
+
+    # Cache Maven dependencies
+    - name: Cache Maven dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven
+
+    # Build the plugin using Maven
+    - name: Build with Maven
+      run: mvn clean package
+
+    # Get the version of the project (falls du die Version aus der pom.xml extrahieren willst)
+    - name: Extract Version
+      id: get_version
+      run: |
+        version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+        echo "Version: $version"
+        echo "release_version=$version" >> $GITHUB_ENV
+
+    # Upload Artifact to GitHub Release
+    - name: Create a GitHub Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref_name }} # Tagname wird automatisch übernommen
+        release_name: Release ${{ github.ref_name }}
+        draft: false # Wenn du den Release zunächst als Entwurf speichern möchtest, setze das auf "true"
+        prerelease: false
+
+    - name: Upload JAR to Release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: target/*.jar # Der Pfad zu deinem gebauten Artefakt
+        asset_name: plugin-${{ env.release_version }}.jar # Der Name der Datei im Release
+        asset_content_type: application/java-archive
