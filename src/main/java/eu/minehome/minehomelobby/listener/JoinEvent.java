@@ -45,6 +45,7 @@ public class JoinEvent implements Listener {
             p.getInventory().clear();
             LobbyInventory.GetLobbyInventory(e.getPlayer());
             new WorldUpdate().DayNightCycle();
+            //Edit Join Sound Level up Sound is better for Join event
             p.performCommand("spawn");
 
         }
