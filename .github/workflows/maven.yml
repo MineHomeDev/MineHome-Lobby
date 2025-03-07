@@ -49,21 +49,19 @@ jobs:
       - name: Create a GitHub Release
         id: create_release
         uses: actions/create-release@v1
-        env:
-          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         with:
           tag_name: v${{ env.release_version }} # Setzt die Version als GitHub Tag
           release_name: ${{ env.project_name }} v${{ env.release_version }} # Name und Version aus der pom.xml
           draft: false
           prerelease: false
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
 
       # Upload JAR to Release
       - name: Upload JAR to Release
         uses: actions/upload-release-asset@v1
-        env:
-          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: target/*.jar # Der Pfad zu deinem gebauten Artefakt
           asset_name: ${{ env.project_name }}-${{ env.release_version }}.jar # Name der JAR-Datei
           asset_content_type: application/java-archive
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
