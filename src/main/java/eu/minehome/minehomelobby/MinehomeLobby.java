@@ -1,10 +1,8 @@
 package eu.minehome.minehomelobby;
 
 import eu.minehome.minehomelobby.commands.*;
-import eu.minehome.minehomelobby.manager.RunTask;
-import eu.minehome.minehomelobby.manager.WarpsFile;
+import eu.minehome.minehomelobby.manager.*;
 import eu.minehome.minehomelobby.listener.*;
-import eu.minehome.minehomelobby.manager.WorldUpdate;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -13,8 +11,12 @@ public final class MinehomeLobby extends JavaPlugin {
 
     public static MinehomeLobby instance;
     private WarpsFile locationFile;
+    private ConfigFile configfile;
+    private LangConfig messagesfile;
     public static MinehomeLobby getInstance(){return instance;}
     public WarpsFile getWarpsFile() {return locationFile;}
+    public ConfigFile getConfigFile(){return configfile;}
+    public LangConfig getMessagesFile(){return messagesfile;}
 
 
     @Override
@@ -63,6 +65,10 @@ public final class MinehomeLobby extends JavaPlugin {
     private void createConfig(){
         locationFile = new WarpsFile();
         locationFile.createFile();
+        configfile = new ConfigFile();
+        configfile.createFile();
+        messagesfile= new LangConfig();
+        messagesfile.createFile();
     }
     public WarpsFile getLocationFile() {return locationFile;}
 }

@@ -12,6 +12,12 @@ import static eu.minehome.minehomelobby.data.Data.*;
 
 public class SetWarpCmd implements CommandExecutor {
 
+    FileConfiguration messagesfile = MinehomeLobby.getInstance().getMessagesFile().getMessagesconfig();
+    String prefix = messagesfile.getString("prefix");
+    String noplayer = messagesfile.getString("noplayer");
+    String noperms = messagesfile.getString("noperms");
+    String setwarpuse = messagesfile.getString("warp.setwarpuse");
+
     FileConfiguration warpsconfig = MinehomeLobby.getInstance().getWarpsFile().getLocationcfg();
 
     @Override

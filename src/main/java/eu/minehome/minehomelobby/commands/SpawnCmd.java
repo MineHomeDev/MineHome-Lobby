@@ -11,9 +11,19 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-import static eu.minehome.minehomelobby.data.Data.*;
+
+
+
 
 public class SpawnCmd implements CommandExecutor {
+
+    FileConfiguration messagesfile = MinehomeLobby.getInstance().getMessagesFile().getMessagesconfig();
+    String prefix = messagesfile.getString("prefix");
+    String noplayer = messagesfile.getString("noplayer");
+    String noperms = messagesfile.getString("noperms");
+    String spawntp = messagesfile.getString("spawn.spawntp");
+    String setspawnuse = messagesfile.getString("spawm.setspawnuse");
+    String nospawn = messagesfile.getString("spawn.nospawn");
 
     FileConfiguration warpsconfig = MinehomeLobby.getInstance().getWarpsFile().getLocationcfg();
 
@@ -36,7 +46,7 @@ public class SpawnCmd implements CommandExecutor {
                 player.teleport(loc);
                 player.playSound(player.getLocation(), (Sound.ENTITY_ENDERMAN_TELEPORT), 1, 1);
                 player.playEffect(EntityEffect.TELEPORT_ENDER);
-                player.sendMessage(prefix + spaentp);
+                player.sendMessage(prefix + spawntp);
             }else{
                 player.sendMessage(prefix + nospawn);
             }

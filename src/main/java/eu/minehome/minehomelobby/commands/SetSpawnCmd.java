@@ -12,6 +12,13 @@ import static eu.minehome.minehomelobby.data.Data.*;
 
 public class SetSpawnCmd implements CommandExecutor {
 
+    FileConfiguration messagesfile = MinehomeLobby.getInstance().getMessagesFile().getMessagesconfig();
+    String prefix = messagesfile.getString("prefix");
+    String noplayer = messagesfile.getString("noplayer");
+    String noperms = messagesfile.getString("noperms");
+    String setspawn = messagesfile.getString("spawn.setspawn");
+    String setspawnuse = messagesfile.getString("spawm.setspawnuse");
+
     FileConfiguration warpsconfig = MinehomeLobby.getInstance().getWarpsFile().getLocationcfg();
 
     @Override

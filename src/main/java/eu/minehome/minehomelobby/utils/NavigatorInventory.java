@@ -1,14 +1,18 @@
 package eu.minehome.minehomelobby.utils;
 
+import eu.minehome.minehomelobby.MinehomeLobby;
 import eu.minehome.minehomelobby.menu.SimpleMenu;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import static eu.minehome.minehomelobby.data.Data.prefix;
-
 public class NavigatorInventory extends SimpleMenu {
+
+    FileConfiguration messagesfile = MinehomeLobby.getInstance().getMessagesFile().getMessagesconfig();
+    String prefix = messagesfile.getString("prefix");
+
     public NavigatorInventory() {
         super(Rows.FIVE, Component.text("§b§lNavigator"));
 

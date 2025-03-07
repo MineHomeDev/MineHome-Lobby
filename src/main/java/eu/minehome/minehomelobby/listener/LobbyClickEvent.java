@@ -1,7 +1,9 @@
 package eu.minehome.minehomelobby.listener;
 
+import eu.minehome.minehomelobby.MinehomeLobby;
 import eu.minehome.minehomelobby.utils.NavigatorInventory;
 import org.bukkit.GameMode;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,6 +14,9 @@ import static eu.minehome.minehomelobby.data.Data.*;
 
 
 public class LobbyClickEvent implements Listener {
+
+    FileConfiguration configfile = MinehomeLobby.getInstance().getConfigFile().getConfigfile();
+    String lobbyworld = configfile.getString("Lobby-World");
 
     @EventHandler
     public void OnLobbyClickEvent(PlayerInteractEvent e) {

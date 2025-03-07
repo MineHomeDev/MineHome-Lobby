@@ -12,6 +12,12 @@ import static eu.minehome.minehomelobby.data.Data.*;
 
 public class DelWarpCmd implements CommandExecutor {
 
+    FileConfiguration messagesfile = MinehomeLobby.getInstance().getMessagesFile().getMessagesconfig();
+    String prefix = messagesfile.getString("prefix");
+    String noplayer = messagesfile.getString("noplayer");
+    String noperms = messagesfile.getString("noperms");
+    String delwarpuse = messagesfile.getString("warp.delwarpuse");
+
     FileConfiguration warpsconfig = MinehomeLobby.getInstance().getWarpsFile().getLocationcfg();
 
     @Override

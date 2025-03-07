@@ -18,6 +18,12 @@ import static eu.minehome.minehomelobby.data.Data.*;
 
 public class WarpCmd implements CommandExecutor {
 
+    FileConfiguration messagesfile = MinehomeLobby.getInstance().getMessagesFile().getMessagesconfig();
+    String prefix = messagesfile.getString("prefix");
+    String noplayer = messagesfile.getString("noplayer");
+    String warpuse = messagesfile.getString("warp.warpuse");
+
+
     FileConfiguration warpsconfig = MinehomeLobby.getInstance().getWarpsFile().getLocationcfg();
 
     @Override

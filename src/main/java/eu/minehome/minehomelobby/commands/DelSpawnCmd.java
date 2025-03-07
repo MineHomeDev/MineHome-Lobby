@@ -12,6 +12,15 @@ import static eu.minehome.minehomelobby.data.Data.*;
 
 public class DelSpawnCmd implements CommandExecutor {
 
+    FileConfiguration messagesfile = MinehomeLobby.getInstance().getMessagesFile().getMessagesconfig();
+    String prefix = messagesfile.getString("prefix");
+    String noplayer = messagesfile.getString("noplayer");
+    String noperms = messagesfile.getString("noperms");
+    String delspawn = messagesfile.getString("spawn.delspawn");
+    String nospawn = messagesfile.getString("spawn.nospawn");
+    String delspawnuse = messagesfile.getString("spawm.delspawnuse");
+
+
     FileConfiguration warpsconfig = MinehomeLobby.getInstance().getWarpsFile().getLocationcfg();
 
     @Override
@@ -34,7 +43,7 @@ public class DelSpawnCmd implements CommandExecutor {
                 player.sendMessage(prefix + nospawn);
             }
         } else{
-            player.sendMessage(prefix + delwarpuse);
+            player.sendMessage(prefix + delspawnuse);
         }
         return false;
     }
