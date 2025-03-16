@@ -26,6 +26,7 @@ public class JoinEvent implements Listener {
 
     FileConfiguration messagesfile = MinehomeLobby.getInstance().getMessagesFile().getMessagesconfig();
     String actionbar = messagesfile.getString("actionbar");
+    String joinmsgtext= messagesfile.getString("connection.join");
 
     @EventHandler
     public void OnPlayerJoinEvent(PlayerJoinEvent e){
@@ -45,7 +46,7 @@ public class JoinEvent implements Listener {
                 }.runTaskTimer(MinehomeLobby.getInstance() /*<-- your plugin instance*/, 5L, 5L);
             }
             if (joinmsg == true){
-                e.setJoinMessage(joinmsg + e.getPlayer().getName());
+                e.setJoinMessage(joinmsgtext + e.getPlayer().getName());
             }else {
                 e.setJoinMessage(null);
             }

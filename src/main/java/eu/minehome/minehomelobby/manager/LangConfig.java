@@ -32,6 +32,8 @@ public class LangConfig {
         messagesfile.addDefault("noperms", "§7Dazu hast du keine §c§lRechet§7!");
         messagesfile.addDefault("noplayer", "§7Du bist kein Spieler!");
         messagesfile.addDefault("actionbar", "§c§lDas Netzwerk ist in der Beta!");
+        messagesfile.addDefault("connection.join", "§7§l[§a§+§7§l]");
+        messagesfile.addDefault("connection.quit", "§7§l[§c§-§7§l]");
         messagesfile.addDefault("build.on", "§7Du bist im §a§lBaumodus§7!");
         messagesfile.addDefault("build.off", "§7Du bist nicht mehr im §c§lBaumodus§7!");
         messagesfile.addDefault("build.use", "§7Bitte benutze §c§l/build");

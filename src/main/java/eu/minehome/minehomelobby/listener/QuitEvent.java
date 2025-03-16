@@ -13,12 +13,14 @@ public class QuitEvent implements Listener {
     String lobbyworld = configfile.getString("Lobby-World");
     boolean quitmsg = configfile.getBoolean("Messages.Quit");
 
+    FileConfiguration messagesfile = MinehomeLobby.getInstance().getMessagesFile().getMessagesconfig();
+    String quitmsgtext= messagesfile.getString("connection.quit");
     @EventHandler
     public void OnPlayerQuitEvent(PlayerQuitEvent e){
         Player p =e.getPlayer();
         if (e.getPlayer().getWorld().getName().equals(lobbyworld)){
             if (quitmsg == true){
-                e.setQuitMessage(quitmsg + e.getPlayer().getName());
+                e.setQuitMessage(quitmsgtext + e.getPlayer().getName());
             }else {
                 e.setQuitMessage(null);
             }
