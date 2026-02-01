@@ -30,6 +30,9 @@ public class LobbyClickEvent implements Listener {
                     case "§b§lFly §7§l| §7§lRechtsklick":
                         player.performCommand("fly");
                         break;
+                    case "§b§lBuild §7§l| §7§lRechtsklick":
+                        player.performCommand("build");
+                        break;
                     case "§b§lNavigator §7§l| §7§lRechtsklick":
                         // Anstelle `new NavigatorInventory`, direkte Funktionalität:
                         new NavigatorInventory().open( player);

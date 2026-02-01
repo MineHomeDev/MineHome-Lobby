@@ -6,7 +6,7 @@ import eu.minehome.minehomelobby.manager.WorldUpdate;
 import eu.minehome.minehomelobby.utils.LobbyInventory;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.GameMode;
+import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,16 +15,21 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 
+import java.util.Objects;
+
 import static eu.minehome.minehomelobby.data.Data.*;
 
 public class JoinEvent implements Listener {
 
     FileConfiguration configfile = MinehomeLobby.getInstance().getConfigFile().getConfigfile();
+    FileConfiguration messagesfile = MinehomeLobby.getInstance().getMessagesFile().getMessagesconfig();
+    FileConfiguration warpsconfig = MinehomeLobby.getInstance().getWarpsFile().getLocationcfg();
     String lobbyworld = configfile.getString("Lobby-World");
+    String prefix = messagesfile.getString("prefix");
+    String nospawn = messagesfile.getString("spawn.nospawn");
     boolean joinmsg = configfile.getBoolean("Messages.Join");
     boolean joinactionbar = configfile.getBoolean("Messages.Actionbar");
 
-    FileConfiguration messagesfile = MinehomeLobby.getInstance().getMessagesFile().getMessagesconfig();
     String actionbar = messagesfile.getString("actionbar");
     String joinmsgtext= messagesfile.getString("connection.join");
 
@@ -56,7 +61,21 @@ public class JoinEvent implements Listener {
             p.getInventory().clear();
             LobbyInventory.GetLobbyInventory(e.getPlayer());
             new WorldUpdate().DayNightCycle();
-            p.performCommand("spawn");
+
+            if (!(warpsconfig.getString("Spawn") == null)) {
+                Location SpawnOnJoin = new Location(Bukkit.getWorld(Objects.requireNonNull(warpsconfig.getString("Spawn.world"))),
+                        warpsconfig.getDouble("Spawn.x"),
+                        warpsconfig.getDouble("Spawn.y"),
+                        warpsconfig.getDouble("Spawn.z"));
+                SpawnOnJoin.setPitch((float) warpsconfig.getDouble("Spawn.pitch"));
+                SpawnOnJoin.setYaw((float) warpsconfig.getDouble("Spawn.yaw"));
+                p.teleport(SpawnOnJoin);
+                p.playSound(p.getLocation(), (Sound.ENTITY_ENDERMAN_TELEPORT), 1, 1);
+                p.playEffect(EntityEffect.TELEPORT_ENDER);
+            }else {
+                p.sendMessage(prefix + nospawn);
+            }
+
 
 
         }
