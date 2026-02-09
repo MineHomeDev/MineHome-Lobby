@@ -28,12 +28,12 @@ public class WarpListCmd implements CommandExecutor {
             return true;
         }
         if (!player.hasPermission(warplistperms)) {
-            sender.sendMessage(prefix + noperms);
+            player.sendMessage(prefix + noperms);
             return true;
         }
         if (args.length == 0) {
             int i = 0;
-            player.sendMessage(prefix + "§7§lAlle §a§lWarps:");
+            player.sendMessage(prefix + "§7§lAlle §a§lWarps §7§lder Lobby:");
             for (String key : warpsconfig.getKeys(true)) {
                 if (!(key.contains("."))) {
                     i += 1;

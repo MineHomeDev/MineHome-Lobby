@@ -28,27 +28,35 @@ public class LangConfig {
         // Add all Messages to messages.yml
         // cfg.addDefault(messages.path, "messages");
         //messagesfile.addDefault("Version", "§7MineHome befidet sich noch in der §4Beta§7!");
-        messagesfile.addDefault("prefix", "§7§l[§b§lLobby§7§l] ");
-        messagesfile.addDefault("noperms", "§7Dazu hast du keine §c§lRechet§7!");
-        messagesfile.addDefault("noplayer", "§7Du bist kein Spieler!");
+        messagesfile.addDefault("prefix", "§8§l[§b§lLobby§8§l] ");
+
+        messagesfile.addDefault("noperms", "§7§lDazu hast du keine §c§lRechte§7§l!");
+        messagesfile.addDefault("noplayer", "§7Bist du sicher dass du ein §c§lSpieler §7§lbist!");
         messagesfile.addDefault("actionbar", "§c§lDas Netzwerk ist in der Beta!");
+
         messagesfile.addDefault("connection.join", "§7§l[§a§l+§7§l]");
         messagesfile.addDefault("connection.quit", "§7§l[§c§l-§7§l]");
-        messagesfile.addDefault("build.on", "§7Du bist im §a§lBaumodus§7!");
-        messagesfile.addDefault("build.off", "§7Du bist nicht mehr im §c§lBaumodus§7!");
-        messagesfile.addDefault("build.use", "§7Bitte benutze §c§l/build");
-        messagesfile.addDefault("fly.on", "§7Du bist im §a§lFlugmodus§7!");
-        messagesfile.addDefault("fly.off", "§7Du bist nicht mehr im §c§lFlugmodus§7!");
-        messagesfile.addDefault("fly.use", "§7Bitte benutze §c§l/fly");
+
+        messagesfile.addDefault("build.on", "§7§lDer §a§lBaumodus §7§lWurde §a§laktiviert§7§l!");
+        messagesfile.addDefault("build.off", "§7§lDer §c§lBaumodus §7§lWurde §c§ldeaktiviert§7§l!");
+        messagesfile.addDefault("build.use", "§7§lBenutze §a§l/build §7§lum zu §7§lwechseln§7§l!");
+
+        messagesfile.addDefault("fly.on", "§7§lDer §a§lFlugmodus §7§lWurde §a§laktiviert§7§l!");
+        messagesfile.addDefault("fly.off", "§7§lDer §c§lFlugmodus §7§lWurde §c§ldeaktiviert§7§l!");
+        messagesfile.addDefault("fly.use", "§7§lBenutze §a§l/fly §7§lum zu §7§lwechseln§7§l!");
+
         messagesfile.addDefault("warp.warpuse", "§7Bitte benutze §c§l/warp <Name>");
         messagesfile.addDefault("warp.setwarpuse", "§7Bitte benutze §c§l/setwarp <Name>");
         messagesfile.addDefault("warp.delwarp", "§7Bitte benutze §c§l/delwarp <Name>");
         messagesfile.addDefault("warp.warplistuse", "§7Bitte benutze §c§l/warplist");
-        messagesfile.addDefault("spawn.nospawn", "§7Der §c§lSpawn §7nicht gefunden!");
-        messagesfile.addDefault("spawn.spawnsetuse", "§7Bitte benutze §c§l/setspawn");
-        messagesfile.addDefault("spawn.setspawn", "§7Der §a§lSpawn §7wurde erfolgreich erstellt!");
-        messagesfile.addDefault("spawn.delspawn", "§7Der §a§lSpawn §7wurde gelöscht");
-        messagesfile.addDefault("spawn.spawntp", "§7Du bist am §a§lSpawn");
+
+
+        messagesfile.addDefault("spawn.nospawn", "§7§lDer §c§lSpawn §7§lnicht §c§lgefunden!");
+        messagesfile.addDefault("spawn.spawnsetuse", "§7§lBitte benutze §a§l/setspawn §7§lum denn spawn zu erstellen");
+        messagesfile.addDefault("spawn.setspawn", "§7§lDer §a§lSpawn §7§lwurde erfolgreich §a§lerstellt!");
+        messagesfile.addDefault("spawn.delspawn", "§7§lDer §c§lSpawn §7§lwurde §c§lgelöscht");
+        messagesfile.addDefault("spawn.spawntp", "§7§lDu bist am §a§lSpawn");
+        messagesfile.addDefault("spawn.usespawn", "§7§lBenutze §a§l/spawn §7§lum zum Spawn zu gelangen");
         save();
     }
 

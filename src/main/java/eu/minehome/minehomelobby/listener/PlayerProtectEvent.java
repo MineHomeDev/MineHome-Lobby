@@ -1,7 +1,8 @@
 package eu.minehome.minehomelobby.listener;
 
 import eu.minehome.minehomelobby.MinehomeLobby;
-import org.bukkit.GameMode;
+import org.bukkit.*;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -10,12 +11,19 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.player.*;
 
+import java.util.Objects;
+
 import static eu.minehome.minehomelobby.data.Data.buildperms;
 
 public class PlayerProtectEvent implements Listener {
 
     FileConfiguration configfile = MinehomeLobby.getInstance().getConfigFile().getConfigfile();
+    FileConfiguration warpsconfig = MinehomeLobby.getInstance().getWarpsFile().getLocationcfg();
+    FileConfiguration messagesfile = MinehomeLobby.getInstance().getMessagesFile().getMessagesconfig();
     String lobbyworld = configfile.getString("Lobby-World");
+    String prefix = messagesfile.getString("prefix");
+    String nospawn = messagesfile.getString("spawn.nospawn");
+
 
     @EventHandler
     public void onPlayerFood (FoodLevelChangeEvent e){
@@ -103,11 +111,24 @@ public class PlayerProtectEvent implements Listener {
     }
     @EventHandler
     public void PlayerFallEvent(PlayerMoveEvent e){
-        Player player = e.getPlayer();
+        Player p = e.getPlayer();
         if (e.getPlayer().getWorld().getName().equals(lobbyworld)){
             if (e.getFrom().getY() != e.getTo().getY()){
-                if (player.getLocation().getY() <= -10) {
-                    player.performCommand( "spawn");
+                if (p.getLocation().getY() <= -10) {
+                    if (!(warpsconfig.getString("Spawn") == null)) {
+                        Location SpawnOnJoin = new Location(Bukkit.getWorld(Objects.requireNonNull(warpsconfig.getString("Spawn.world"))),
+                                warpsconfig.getDouble("Spawn.x"),
+                                warpsconfig.getDouble("Spawn.y"),
+                                warpsconfig.getDouble("Spawn.z"));
+                        SpawnOnJoin.setPitch((float) warpsconfig.getDouble("Spawn.pitch"));
+                        SpawnOnJoin.setYaw((float) warpsconfig.getDouble("Spawn.yaw"));
+                        p.teleport(SpawnOnJoin);
+                        p.playSound(p.getLocation(), (Sound.ENTITY_ENDERMAN_TELEPORT), 1, 1);
+                        p.playEffect(EntityEffect.TELEPORT_ENDER);
+                    } else {
+                        p.teleport(Bukkit.getWorld(Objects.requireNonNull(configfile.getString("Lobby-World"))).getSpawnLocation());
+                        p.sendMessage(prefix + nospawn);
+                    }
                 }
             }
         }

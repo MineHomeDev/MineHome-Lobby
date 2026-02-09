@@ -1,10 +1,7 @@
 package eu.minehome.minehomelobby.commands;
 
 import eu.minehome.minehomelobby.MinehomeLobby;
-import org.bukkit.Bukkit;
-import org.bukkit.EntityEffect;
-import org.bukkit.Location;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -45,11 +42,17 @@ public class WarpCmd implements CommandExecutor {
                 player.teleport(loc);
                 player.playSound(player.getLocation(), (Sound.ENTITY_ENDERMAN_TELEPORT), 1, 1);
                 player.playEffect(EntityEffect.TELEPORT_ENDER);
-                player.sendMessage(prefix + "§7Du bist beim Warp §a§l " + args[0] + "§7!");
-            }else{
+
+                if (player.getGameMode() == GameMode.CREATIVE && player.hasPermission("minehome.lobby.debug")) {
+                    player.sendMessage(prefix + "§7Du bist beim Warp §a§l " + args[0] + "§7!");
+                }
+
+            }else if (player.getGameMode() == GameMode.CREATIVE && player.hasPermission("minehome.lobby.debug")){
                 player.sendMessage(prefix + "§7Warp §a§l" + args[0] + " §7nicht gefunden!");
+            }else {
+                player.sendMessage(prefix + "§c§lDas hat nicht so gut funktioniert!");
             }
-        }else player.sendMessage(prefix + warpuse);
+        }else player.sendMessage(prefix + "§c§lDas hat nicht so gut funktioniert!");
         return false;
     }
 }

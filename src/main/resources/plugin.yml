@@ -22,6 +22,7 @@ commands:
   warplist:
     description: Mit /warplist werden dir alle Warps angezeigt.
     permission: minehome.warplist
+    permission-message: "§cDafür hast du keine Rechte."
   setspawn:
     description: Mit /setspawn kannst du denn Spawn setzen.
     permission: minehome.setspawn

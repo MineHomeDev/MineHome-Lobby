@@ -70,8 +70,6 @@ public class JoinEvent implements Listener {
                 SpawnOnJoin.setPitch((float) warpsconfig.getDouble("Spawn.pitch"));
                 SpawnOnJoin.setYaw((float) warpsconfig.getDouble("Spawn.yaw"));
                 p.teleport(SpawnOnJoin);
-                p.playSound(p.getLocation(), (Sound.ENTITY_ENDERMAN_TELEPORT), 1, 1);
-                p.playEffect(EntityEffect.TELEPORT_ENDER);
             }else {
                 p.sendMessage(prefix + nospawn);
             }

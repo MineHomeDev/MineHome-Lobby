@@ -6,7 +6,7 @@
 
     <groupId>eu.minehome</groupId>
     <artifactId>minehome-lobby</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
     <name>minehome-lobby</name>
 

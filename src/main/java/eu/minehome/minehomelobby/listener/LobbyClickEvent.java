@@ -23,7 +23,7 @@ public class LobbyClickEvent implements Listener {
 
         Player player = e.getPlayer();
 
-        if (e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_AIR) {
+        if (e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK || e.getAction() == Action.LEFT_CLICK_AIR) {
             if (e.getItem() != null && e.getItem().getItemMeta() != null) {
                 String displayName = e.getItem().getItemMeta().getDisplayName();
                 switch (displayName) {

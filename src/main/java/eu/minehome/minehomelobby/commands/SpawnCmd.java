@@ -24,6 +24,7 @@ public class SpawnCmd implements CommandExecutor {
     String spawntp = messagesfile.getString("spawn.spawntp");
     String setspawnuse = messagesfile.getString("spawm.setspawnuse");
     String nospawn = messagesfile.getString("spawn.nospawn");
+    String usespawn = messagesfile.getString("spawn.usespawn");
 
     FileConfiguration warpsconfig = MinehomeLobby.getInstance().getWarpsFile().getLocationcfg();
 
@@ -34,6 +35,12 @@ public class SpawnCmd implements CommandExecutor {
             sender.sendMessage(prefix + noplayer);
             return true;
         }
+
+        if (args.length != 0) {
+            player.sendMessage(prefix + usespawn);
+            return true;
+        }
+
         if (args.length == 0) {
             if (!(warpsconfig.getString("Spawn") == null)) {
                 Location loc = new Location(Bukkit.getWorld(Objects.requireNonNull(warpsconfig.getString("Spawn.world"))),
@@ -46,11 +53,15 @@ public class SpawnCmd implements CommandExecutor {
                 player.teleport(loc);
                 player.playSound(player.getLocation(), (Sound.ENTITY_ENDERMAN_TELEPORT), 1, 1);
                 player.playEffect(EntityEffect.TELEPORT_ENDER);
-                player.sendMessage(prefix + spawntp);
-            }else{
+                if (player.getGameMode() == GameMode.CREATIVE && player.hasPermission("minehome.lobby.debug")) {
+                    player.sendMessage(prefix + spawntp);
+                }
+            }else if (player.hasPermission("minehome.lobby.debug")){
                 player.sendMessage(prefix + nospawn);
             }
-        }else player.sendMessage(prefix + setspawnuse);
+        }else{
+            player.sendMessage(prefix + setspawnuse);
+        }
         return false;
     }
 }
