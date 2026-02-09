@@ -106,7 +106,7 @@ public class PlayerProtectEvent implements Listener {
         Player player = e.getPlayer();
         if (e.getPlayer().getWorld().getName().equals(lobbyworld)){
             if (e.getFrom().getY() != e.getTo().getY()){
-                if (player.getLocation().getY() <= 10) {
+                if (player.getLocation().getY() <= -10) {
                     player.performCommand( "spawn");
                 }
             }

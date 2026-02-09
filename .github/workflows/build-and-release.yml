@@ -1,0 +1,93 @@
+name: Build & Release Velocity Plugin (Maven)
+
+on:
+  push:
+    branches: ["master"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: maven
+
+      - name: Read artifactId + version from pom.xml
+        id: pom
+        shell: bash
+        run: |
+          ARTIFACT_ID=$(mvn -q -ntp -DforceStdout help:evaluate -Dexpression=project.artifactId)
+          VERSION=$(mvn -q -ntp -DforceStdout help:evaluate -Dexpression=project.version)
+
+          # mvn help:evaluate kann manchmal CR/LF oder Spaces liefern -> trimmen
+          ARTIFACT_ID=$(echo "$ARTIFACT_ID" | tr -d '\r' | tail -n 1)
+          VERSION=$(echo "$VERSION" | tr -d '\r' | tail -n 1)
+
+          echo "artifactId=$ARTIFACT_ID" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+          echo "Detected artifactId: $ARTIFACT_ID"
+          echo "Detected version: $VERSION"
+
+      - name: Build with Maven
+        run: mvn -B -ntp clean package
+
+      - name: Upload jar (artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.pom.outputs.artifactId }}-${{ steps.pom.outputs.version }}
+          path: |
+            target/${{ steps.pom.outputs.artifactId }}-*.jar
+            !target/*-sources.jar
+            !target/*-javadoc.jar
+          if-no-files-found: error
+
+      - name: Compute tag + check existence
+        id: rel
+        shell: bash
+        run: |
+          VERSION="${{ steps.pom.outputs.version }}"
+          TAG="v${VERSION}"
+
+          if git ls-remote --tags origin | grep -q "refs/tags/${TAG}$"; then
+            echo "create=false" >> "$GITHUB_OUTPUT"
+            echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "create=true" >> "$GITHUB_OUTPUT"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+
+      - name: Create Git tag
+        if: steps.rel.outputs.create == 'true'
+        shell: bash
+        run: |
+          TAG="${{ steps.rel.outputs.tag }}"
+          git tag "$TAG"
+          git push origin "$TAG"
+
+      - name: Create GitHub Release & upload jar
+        if: steps.rel.outputs.create == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.rel.outputs.tag }}
+          name: ${{ steps.pom.outputs.artifactId }} ${{ steps.pom.outputs.version }}
+          prerelease: ${{ contains(steps.pom.outputs.version, 'SNAPSHOT') }}
+          generate_release_notes: true
+          files: |
+            target/${{ steps.pom.outputs.artifactId }}-*.jar
+            !target/*-sources.jar
+            !target/*-javadoc.jar
